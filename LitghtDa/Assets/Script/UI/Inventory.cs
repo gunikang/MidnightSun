@@ -4,43 +4,40 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
+    public static Inventory _instance = null;
+
     public Image _ItemImg;
     private bool _ItemCheak;
 
     public Sprite _ItemSprite;
     public Sprite _ItemSpriteDelete;
-    public static bool m_bItemSelect;
-    public static int m_nItemNumber = 1;
-
+    public bool m_bItemSelect;
+    public int m_nItemNumber = 0;
     public Text _ItemText;
 
-    void Start ()
+    void Start()
     {
-        //for (int i = 0; i < 1; i++)
-        //{
-        //    _ItemImg[i] = GetComponent<Image>();
-        //    _ItemCheak[i] = false;
-        //}
+        Inventory._instance = this;
     }
-	
-	void Update ()
+    void Update ()
     {
+        Debug.Log("m_nItemNumber : " + m_nItemNumber);
+
         if (m_nItemNumber <= 0)
         {
             _ItemImg.sprite = _ItemSpriteDelete;
+            _ItemText.text = " ";
         }
-        else
+        else if (m_nItemNumber >= 1)
         {
-            if (m_nItemNumber >= 2)
-                _ItemText.text = m_nItemNumber.ToString();
-            else
-                _ItemText.text = " ";
+            _ItemImg.sprite = _ItemSprite;
+            _ItemText.text = m_nItemNumber.ToString();
+        }
 
-            if (m_bItemSelect)
-            {
-                AddItem();
-                m_bItemSelect = false;
-            }
+        if (m_bItemSelect)
+        {
+            AddItem();
+            m_bItemSelect = false;
         }
     }
 
@@ -52,6 +49,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
+            m_nItemNumber++;
             _ItemCheak = true;
             _ItemImg.sprite = _ItemSprite;
         }

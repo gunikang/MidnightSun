@@ -89,11 +89,13 @@ public class MobMove : MonoBehaviour
                 break;
             case MobState.LightRun:
                 {
-                    nav.SetDestination(vRand);
-                    if (Vector3.Distance(transform.position, vRand) <= 2f)
-                    {
-                        _State = MobState.Idle;
-                    }
+                    nav.speed = 0;
+                    StartCoroutine("MobSturnTime");
+                    //nav.SetDestination(vRand);
+                    //if (Vector3.Distance(transform.position, vRand) <= 2f)
+                    //{
+                    //    _State = MobState.Idle;
+                    //}
                 }
                 break;
             case MobState.Attack:
@@ -125,6 +127,12 @@ public class MobMove : MonoBehaviour
         nav.speed = 3f;
         yield return new WaitForSeconds(0.5f);
         _State = MobState.Walk;
-
     }
+    IEnumerator MobSturnTime()
+    {
+        yield return new WaitForSeconds(4f);
+        _State = MobState.Idle;
+    }
+
+
 }

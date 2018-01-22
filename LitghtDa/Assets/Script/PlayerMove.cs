@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class PlayerMove : MonoBehaviour
     public AudioClip[] AC_Sound;
 
     public static float m_fPlayerHp = 10; // 캐릭터의 Hp
-    public static float m_fPlayerEnergy = 10; // 캐릭터의 행동에너지
+    public static float m_fPlayerEnergy = 1; // 캐릭터의 행동에너지
     public bool m_bEnergyCheak = true; // 행동에너지(사운드처리)
 
     public static float speed;  // 캐릭터 움직임 스피드.      
@@ -21,6 +22,7 @@ public class PlayerMove : MonoBehaviour
 
     void Awake()
     {
+        
         // 사운드
         AS_Audio = this.gameObject.AddComponent<AudioSource>();
         AS_Audio.clip = this.AC_Sound[0];
@@ -33,8 +35,15 @@ public class PlayerMove : MonoBehaviour
         MoveDir = Vector3.zero;
         controller = GetComponent<CharacterController>();
     }
+    void Start()
+    {
+        StartCoroutine(StaminaAdd());
+    }
     void Update()
     {
+        UIManager._instance._Stamina.fillAmount = m_fPlayerEnergy;
+        if (m_fPlayerEnergy >= 1) m_fPlayerEnergy = 1;
+
         Debug.Log("m_fPlayerHp : " + m_fPlayerHp);
         // 현재 캐릭터가 땅에 있는가?
         if (controller.isGrounded)
@@ -70,7 +79,7 @@ public class PlayerMove : MonoBehaviour
 
         }
         // 행동에너지가 없을 경우
-        if (m_fPlayerEnergy <= 2)
+        if (m_fPlayerEnergy <= 0.2f)
         {
             if (m_bEnergyCheak)
             {
@@ -99,5 +108,14 @@ public class PlayerMove : MonoBehaviour
     {
         AS_Audio.clip = this.AC_Sound[type];
         AS_Audio.Stop();
+    }
+
+    IEnumerator StaminaAdd()
+    {
+        while(true)
+        {
+            m_fPlayerEnergy += 0.2f * Time.deltaTime;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

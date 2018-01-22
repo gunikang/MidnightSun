@@ -23,7 +23,7 @@ public class Item : MonoBehaviour
             // E키를 누르면 아이템 획득
             if (Input.GetKey(KeyCode.E))
             {
-                Inventory.m_bItemSelect = true;
+                Inventory._instance.m_bItemSelect = true;
                 Destroy(this.gameObject);
             }
         }

@@ -141,12 +141,12 @@ public class FlashLight : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.G)) // G키 누르면
         {
             // 갯수가 1개이상일 경우
-            if(Inventory.m_nItemNumber >= 1)
+            if(Inventory._instance.m_nItemNumber >= 1)
             {
                 SoundPlayType(2); // 사운드호출
                 m_bLightWith = true; 
                 m_fLightBar += 0.3f; // 기름 주입
-                Inventory.m_nItemNumber--; // 갯수 줄이기
+                Inventory._instance.m_nItemNumber--; // 갯수 줄이기
             }
         }
     }

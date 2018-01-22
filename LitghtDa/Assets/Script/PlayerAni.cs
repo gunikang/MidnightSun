@@ -26,7 +26,7 @@ public class PlayerAni : MonoBehaviour
             if(Input.GetKey(KeyCode.LeftShift) && PlayerMove.m_fPlayerEnergy >= 0)
             {
                 // 행동에너지 감소
-                PlayerMove.m_fPlayerEnergy -= 2 * Time.deltaTime;
+                PlayerMove.m_fPlayerEnergy -= 0.2f * Time.deltaTime;
                 // 애니메이션은 달리기로
                 AniControl(false, false, true);
                 // 스피드변경
