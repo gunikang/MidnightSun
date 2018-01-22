@@ -35,6 +35,7 @@ GraphicsSettings:
   - {fileID: 15106, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 16000, guid: 0000000000000000f000000000000000, type: 0}
   m_PreloadedShaders: []
   m_SpritesDefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000,
     type: 0}
@@ -43,7 +44,6 @@ GraphicsSettings:
   m_TransparencySortAxis: {x: 0, y: 0, z: 1}
   m_DefaultRenderingPath: 1
   m_DefaultMobileRenderingPath: 1
-<<<<<<< HEAD
   m_TierSettings:
   - serializedVersion: 5
     m_BuildTarget: 1
@@ -62,9 +62,6 @@ GraphicsSettings:
       enableLPPV: 1
       useDitherMaskForAlphaBlendedShadows: 1
     m_Automatic: 0
-=======
-  m_TierSettings: []
->>>>>>> master
   m_LightmapStripping: 0
   m_FogStripping: 0
   m_InstancingStripping: 0

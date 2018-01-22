@@ -4,39 +4,28 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    private List<GameObject> _ItemList = new List<GameObject>();
+    // 아이템 획득 범위
+    public float m_fItemDistance = 1.0f;
 
-
-    public GameObject _ItemText = null;
-    public Transform _PlayerTf = null;
-
-    public float m_fItemDistance = 1.5f; // 아이템 획득 범위
-	void Start ()
-    {
-        _ItemText.SetActive(false);
-    }
-	
-	void Update ()
+    void Update()
     {
         ItemDistance();
     }
 
     void ItemDistance()
     {
-        if(Vector3.Distance(_PlayerTf.transform.position, transform.position) < m_fItemDistance)
+        // 플레이어의 좌표를 가져와서 보간하기
+        Vector3 vPlayerPos = GameObject.FindWithTag("Player").transform.position;
+
+        // 플레이어 좌표와 아이템의 좌표를 비교하여 일정거리안에 들었을시
+        if(Vector3.Distance(vPlayerPos, transform.position) < m_fItemDistance)
         {
-            _ItemText.SetActive(true);
-            if(Input.GetKeyDown(KeyCode.E))
+            // E키를 누르면 아이템 획득
+            if (Input.GetKey(KeyCode.E))
             {
-                _ItemText.SetActive(false);
+                Inventory.m_bItemSelect = true;
                 Destroy(this.gameObject);
             }
         }
-        else
-        {
-            _ItemText.SetActive(false);
-        }
     }
-
-    
 }

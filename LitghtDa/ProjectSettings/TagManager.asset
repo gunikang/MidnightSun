@@ -3,12 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
   tags:
   - CubeMob
-=======
-  tags: []
->>>>>>> master
   layers:
   - Default
   - TransparentFX
@@ -18,11 +14,7 @@ TagManager:
   - UI
   - 
   - 
-<<<<<<< HEAD
   - Box
-=======
-  - 
->>>>>>> master
   - 
   - 
   - 
